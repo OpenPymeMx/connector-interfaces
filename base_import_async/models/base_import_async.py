@@ -24,7 +24,7 @@
 
 import csv
 import os
-from cStringIO import StringIO
+from io import StringIO
 
 from openerp.models import TransientModel
 from openerp.models import fix_import_export_id_paths
@@ -204,7 +204,7 @@ class BaseImportConnector(TransientModel):
         try:
             data, import_fields = self._convert_import_data(
                 record, fields, options, context=context)
-        except ValueError, e:
+        except ValueError as e:
             return [{
                 'type': 'error',
                 'message': unicode(e),
